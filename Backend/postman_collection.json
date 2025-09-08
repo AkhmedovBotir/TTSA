@@ -1,0 +1,667 @@
+{
+	"info": {
+		"_postman_id": "your-postman-id",
+		"name": "Bar Admin API",
+		"description": "Bar Admin uchun barcha API endpointlar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autentifikatsiya",
+			"item": [
+				{
+					"name": "Sotuvchi yaratish (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Sotuvchi\",\n    \"username\": \"test_seller\",\n    \"password\": \"password123\",\n    \"isAdmin\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/sellers",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sellers"]
+						},
+						"description": "Yangi sotuvchi yaratish (Faqat admin)"
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"test_seller\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/sellers/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sellers", "login"]
+						},
+						"description": "Tizimga kirish va token olish"
+					}
+				},
+				{
+					"name": "O'z profilini olish",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sellers/me",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sellers", "me"]
+						},
+						"description": "O'z profil ma'lumotlarini olish"
+					}
+				}
+			]
+		},
+		{
+			"name": "User Mobile",
+			"item": [
+				{
+					"name": "User Ro'yxatdan o'tish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"phoneNumber\": \"+998901234567\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "register"]
+						},
+						"description": "Yangi user ro'yxatdan o'tish"
+					}
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"+998901234567\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "login"]
+						},
+						"description": "User tizimga kirish"
+					}
+				},
+				{
+					"name": "Tasdiqlash kodi yuborish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"+998901234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/send-verification-code",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "send-verification-code"]
+						},
+						"description": "Telefon raqamni tasdiqlash uchun kod yuborish"
+					}
+				},
+				{
+					"name": "Kodni tasdiqlash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"+998901234567\",\n    \"code\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/verify-code",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "verify-code"]
+						},
+						"description": "Tasdiqlash kodini tekshirish"
+					}
+				},
+				{
+					"name": "Parolni unutib qo'ygan holda tiklash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"+998901234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/forgot-password",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "forgot-password"]
+						},
+						"description": "Parolni unutib qo'ygan holda yangi parol olish"
+					}
+				},
+				{
+					"name": "User profilini olish",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "profile"]
+						},
+						"description": "User profil ma'lumotlarini olish"
+					}
+				},
+				{
+					"name": "User profilini yangilash",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John Updated\",\n    \"lastName\": \"Doe Updated\",\n    \"image\": \"new_profile_image_url\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/profile",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "profile"]
+						},
+						"description": "User profil ma'lumotlarini yangilash"
+					}
+				},
+				{
+					"name": "Parolni o'zgartirish",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\": \"123456\",\n    \"newPassword\": \"newpassword123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/change-password",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "change-password"]
+						},
+						"description": "User parolini o'zgartirish"
+					}
+				}
+			]
+		},
+		{
+			"name": "User Mobile Products",
+			"item": [
+				{
+					"name": "Barcha mahsulotlarni olish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products?page=1&limit=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Barcha faol mahsulotlarni olish"
+					}
+				},
+				{
+					"name": "Mahsulotni ID bo'yicha olish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products/product_id_here",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products", "product_id_here"]
+						},
+						"description": "Bitta mahsulotni ID bo'yicha olish"
+					}
+				},
+				{
+					"name": "Kategoriya bo'yicha mahsulotlar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products/category/category_id_here",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products", "category", "category_id_here"]
+						},
+						"description": "Kategoriya bo'yicha mahsulotlarni olish"
+					}
+				},
+				{
+					"name": "Mahsulotlarni qidirish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products/search?q=search_term",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products", "search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "search_term"
+								}
+							]
+						},
+						"description": "Mahsulotlarni nomi bo'yicha qidirish"
+					}
+				},
+				{
+					"name": "Chegirmali mahsulotlar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products/discounted",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products", "discounted"]
+						},
+						"description": "Chegirmali mahsulotlarni olish"
+					}
+				},
+				{
+					"name": "Yangi mahsulotlar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user-mobile/products/new?days=30",
+							"host": ["{{base_url}}"],
+							"path": ["api", "user-mobile", "products", "new"],
+							"query": [
+								{
+									"key": "days",
+									"value": "30"
+								}
+							]
+						},
+						"description": "Yangi qo'shilgan mahsulotlarni olish"
+					}
+				}
+			]
+		},
+		{
+			"name": "Kategoriyalar",
+			"item": [
+				{
+					"name": "Kategoriya yaratish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ichimliklar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories"]
+						},
+						"description": "Yangi kategoriya yaratish (Admin)"
+					}
+				},
+				{
+					"name": "Barcha kategoriyalar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories"]
+						},
+						"description": "Barcha kategoriyalarni olish"
+					}
+				},
+				{
+					"name": "Kategoriyani yangilash",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Yangilangan nom\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "categories", "{{category_id}}"]
+						},
+						"description": "Kategoriyani yangilash (Admin)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Mahsulotlar",
+			"item": [
+				{
+					"name": "Mahsulot yaratish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Coca-Cola\",\n    \"category\": \"{{category_id}}\",\n    \"type\": \"water\",\n    \"properties\": [\n        {\n            \"key\": \"hajm\",\n            \"value\": \"1 litr\"\n        },\n        {\n            \"key\": \"miqdor\",\n            \"value\": \"24 dona\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products"]
+						},
+						"description": "Yangi mahsulot yaratish (Admin)"
+					}
+				},
+				{
+					"name": "Barcha mahsulotlar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products"]
+						},
+						"description": "Barcha mahsulotlarni olish"
+					}
+				},
+				{
+					"name": "Kategoriya bo'yicha mahsulotlar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/products/category/{{category_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "products", "category", "{{category_id}}"]
+						},
+						"description": "Kategoriya bo'yicha mahsulotlarni olish"
+					}
+				}
+			]
+		},
+		{
+			"name": "Sotuvlar",
+			"item": [
+				{
+					"name": "Sotuv yaratish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"{{product_id}}\",\n    \"quantity\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/sales",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sales"]
+						},
+						"description": "Yangi sotuv yaratish"
+					}
+				},
+				{
+					"name": "Barcha sotuvlar (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sales",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sales"]
+						},
+						"description": "Barcha sotuvlarni olish (Faqat admin)"
+					}
+				},
+				{
+					"name": "Sotuvchi bo'yicha sotuvlar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sales/seller/{{seller_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sales", "seller", "{{seller_id}}"]
+						},
+						"description": "Sotuvchi bo'yicha sotuvlarni olish"
+					}
+				},
+				{
+					"name": "Statistika (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/sales/statistics/summary",
+							"host": ["{{base_url}}"],
+							"path": ["api", "sales", "statistics", "summary"]
+						},
+						"description": "Sotuvlar statistikasini olish (Faqat admin)"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your-jwt-token",
+			"type": "string"
+		},
+		{
+			"key": "category_id",
+			"value": "category-id",
+			"type": "string"
+		},
+		{
+			"key": "product_id",
+			"value": "product-id",
+			"type": "string"
+		},
+		{
+			"key": "seller_id",
+			"value": "seller-id",
+			"type": "string"
+		}
+	]
+}
