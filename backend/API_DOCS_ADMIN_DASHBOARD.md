@@ -16,7 +16,6 @@ Authorization: Bearer <jwt_token>
 
 ## Required Permissions
 - `view_dashboard` - Required to access dashboard statistics
-- `view_statistics` - Required to view detailed statistics
 
 ---
 
@@ -385,3 +384,4 @@ const activeInstallments = filterRecentActivities(
 - Monitor database performance for complex aggregations
 
 This API provides comprehensive dashboard functionality for system administrators with detailed statistics, performance metrics, and real-time insights into the platform's operations.
+

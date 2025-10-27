@@ -15,6 +15,13 @@
       }
     },
     "production": {
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "production-aab": {
+      "distribution": "store",
       "android": {
         "buildType": "app-bundle"
       }
